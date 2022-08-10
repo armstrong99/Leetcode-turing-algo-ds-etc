@@ -1,0 +1,1 @@
+// We used the interface Shape to ensure that our program is open for extension but closed for modification. The Liskov substitution principle tells us that we should be able to pass any subtype of Shape to the getArea function without altering the correctness of that program. 

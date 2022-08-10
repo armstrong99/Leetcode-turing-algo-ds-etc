@@ -1,0 +1,34 @@
+False
+
+:~/Desktop/turing (master)$
+ /usr/local/bin/python3 
+ /Users/armstrong/Desktop/turing/pyIntv/isPalindrome.py
+Madam madam
+True
+
+:~/Desktop/turing (master)$
+ /usr/local/bin/python3 
+ /Users/armstrong/Desktop/turing/pyIntv/isPalindrome.py
+True
+
+:~/Desktop/turing (master)$
+ /usr/local/bin/python3 
+ /Users/armstrong/Desktop/turing/pyIntv/isPalindrome.py
+28
+
+:~/Desktop/turing (master)$
+ /usr/local/bin/python3 
+ /Users/armstrong/Desktop/turing/pyIntv/isPalindrome.py
+6
+
+:~/Desktop/turing (master)$
+ /usr/local/bin/python3 
+ /Users/armstrong/Desktop/turing/pyIntv/isPalindrome.py
+6 range(0, 4)
+
+:~/Desktop/turing (master)$
+ /usr/local/bin/python3 
+ /Users/armstrong/Desktop/turing/pyIntv/isPalindrome.py
+24 range(0, 4)
+
+:~/Desktop/turing (master)$ 
