@@ -5,42 +5,43 @@
  * @param localMaxima 
  * @param arr 
  * @definition GlobalMaxima is the max of local Maxima and prev Global Maxima 
- * @definition LocalMaxima, M, is the either the Current(ith) element,x, or previous LocalMaxima
+ * @definition LocalMaxima, M, is the either the Current(ith) element,x, or sum previous LocalMaxima and x
  * @strategy remove  unused M when passed
- * 
+ * @Author - Ndukwe Armstrong(@ai_lift)
  */
 
-function kadens(arr = [-2, 3, 2, -1]) {
+interface IMaxs {
+    globalMaxima: number
+    localMaxima: number
+}
+
+function kadens(arr = [2, 1, -2, 3, 2]) {
 
     let currElem = arr.shift()
 
-    let globalMaxima = currElem
-    let localMaxima = currElem
+    let maximals: IMaxs = {
+        globalMaxima: currElem,
+        localMaxima: currElem
+    }
 
-    function kadensRecursive(globalMaxima: number = 0, localMaxima: number = 0, arr: Array<number> = []) {
+    function kadensRecursive(dt: IMaxs, arr: Array<number> = []) {
         if (arr.length === 1) {
-            localMaxima = Math.max(localMaxima, arr[0] + localMaxima)
-            globalMaxima = Math.max(globalMaxima, localMaxima)
+            dt.localMaxima = Math.max(dt.localMaxima, arr[0] + dt.localMaxima)
+            dt.globalMaxima = Math.max(dt.globalMaxima, dt.localMaxima)
             return
         }
 
         let currElem = arr.shift()
 
-        localMaxima = Math.max(currElem, currElem + localMaxima)
-        
-        globalMaxima = Math.max(globalMaxima, localMaxima)
+        dt.localMaxima = Math.max(currElem, currElem + dt.localMaxima)
+        dt.globalMaxima = Math.max(dt.globalMaxima, dt.localMaxima)
 
-        console.log(localMaxima)
-
-        kadensRecursive(globalMaxima, localMaxima, arr)
+        kadensRecursive(dt, arr)
     }
 
-    kadensRecursive(globalMaxima, localMaxima, arr)
+    kadensRecursive(maximals, arr)
 
-    console.log(arr)
-
-    return globalMaxima
-
+    return maximals.globalMaxima
 
 }
 
