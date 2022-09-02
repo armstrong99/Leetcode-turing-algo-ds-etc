@@ -1,17 +1,16 @@
 // let words = [  "way", "a", "w", "y"
 // ]
-let words = [
-    "phone", "rockstar", "rock", "stars", "rocks", "tar", "rockstars", "super", "highway", "high",
-    "way", "superhighway", "a", "w", "y"
-].sort((a,b) => a.length - b.length)
-
-console.log(words)
-
+let words = ["phone", "rockstar", "rock", "stars", "rocks", "tar", "rockstars", "super", "highway", "high", "way", "superhighway", "a", "w", "y"]
 interface IRoot {
     children: { [key: string]: IRoot },
     endOfWord: boolean
 }
-
+/**
+ * @class 
+ * @classdesc Use Prefix Tree solution
+ * @method getCpW - Breaks down compound words to sub words
+ * @property root 
+ */
 class solveCW {
     root: IRoot = {
         children: {},
@@ -21,29 +20,29 @@ class solveCW {
     constructor(_words: string[] = words) {
         (() => {
             _words.forEach(w => {
-                 let curr = this.root
-                 for (const char of w) {
+                let curr = this.root
+                for (const char of w) {
                     if (!curr.children[char]) {
                         curr.children[char] = {
                             children: {},
                             endOfWord: false
                         }
                     }
-                     curr = curr.children[char]
+                    curr = curr.children[char]
                 }
-                 curr.endOfWord = true
+                curr.endOfWord = true
             })
         })()
     }
 
     getCpW() {
 
-        let cpWordMap:{[key: string]: any} = {}
+        let cpWordMap: { [key: string]: any } = {}
 
         words.forEach(word => {
 
             let curr = this.root;
- 
+
             let _subWord = ""
 
             let currentCpWord: {
@@ -59,10 +58,10 @@ class solveCW {
             for (const char of word) {
                 _subWord += char
 
-                if(words.includes(_subWord) ){
+                if (words.includes(_subWord)) {
                     currentCpWord.subWords.push(_subWord)
                     _subWord = ""
-                 }
+                }
 
                 if (curr.children[char].endOfWord) {
                     currentCpWord.noOfSubWord = currentCpWord.noOfSubWord + 1;
@@ -70,13 +69,13 @@ class solveCW {
 
                 curr = curr.children[char]
             }
-           
-            if(currentCpWord.noOfSubWord > 1) {
-                if(_subWord.length) {
+
+            if (currentCpWord.noOfSubWord > 1) {
+                if (_subWord.length) {
                     currentCpWord.subWords.push(_subWord)
                 }
                 cpWordMap[currentCpWord.word] = {
-                    [currentCpWord.word] : currentCpWord.subWords.join(" + ")
+                    [currentCpWord.word]: currentCpWord.subWords.join(" + ")
                 }
             }
 
@@ -84,7 +83,10 @@ class solveCW {
 
         return cpWordMap
     }
-
+    /**
+     * @linkedin ndukwearmstrong
+     * @github  armstrong99/interview-solutions
+     */
 }
 
 let result = new solveCW().getCpW()
